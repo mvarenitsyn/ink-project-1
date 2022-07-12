@@ -47,7 +47,7 @@ app.post('/videos', (req:Request, res:Response) => {
         videos.push(newVideo)
         res.status(201).send(newVideo)
     } else {
-        res.status(400).send(handleError('Field is incorrect', 'Title'))
+        res.status(400).send(handleError('Field is incorrect', 'title'))
     }
 })
 
@@ -58,7 +58,7 @@ app.put('/videos/:id', (req:Request, res:Response) =>  {
             videos[updateIndex].title = req.body.title
             res.status(204)
         } else {
-            res.status(400).send(handleError('Input has exceeded maximum length of 40 symbols', 'Title'))
+            res.status(400).send(handleError('Input has exceeded maximum length of 40 symbols', 'title'))
         }
     } else {
         res.status(404)
@@ -90,10 +90,10 @@ app.listen(port, () => {
 })
 
 const handleError = (message:String, field:String) => {
-    return `{ "errorMessages": [
+    return JSON.parse(`{ "errorMessages": [
         {
             "message" = "${message}",
             "field" = "${field}"
         }
-    ]}`
+    ]}`)
 }
