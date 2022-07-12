@@ -47,7 +47,7 @@ app.post('/videos', (req:Request, res:Response) => {
         videos.push(newVideo)
         res.status(201).send(newVideo)
     } else {
-        res.status(400).send(handleError('Field is incorrect', 'title'))
+        res.status(400).json({ "errorsMessages": [{ "message": "Input error", "field": "title" }] })
     }
 })
 
@@ -61,7 +61,7 @@ app.put('/videos/:id', (req:Request, res:Response) =>  {
             videos[updateIndex].title = req.body.title
             res.status(204)
         } else {
-            res.status(400).send(handleError('Field is incorrect (max length is 40)', 'title'))
+            res.status(400).json({ "errorsMessages": [{ "message": "Input error", "field": "title" }] })
         }
     } else {
         res.status(404)
@@ -93,11 +93,3 @@ app.listen(port, () => {
     console.log(`Server up and running op port: ${port}`)
 })
 
-const handleError = (message:String, field:String) => {
-    return JSON.parse(`{ "errorMessages": [
-        {
-            "message" = "${message}",
-            "field" = "${field}"
-        }
-    ]}`)
-}
