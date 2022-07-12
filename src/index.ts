@@ -51,6 +51,7 @@ app.post('/videos', (req:Request, res:Response) => {
     }
 })
 
+//Put request
 app.put('/videos/:id', (req:Request, res:Response) =>  {
     const updateIndex = videos.findIndex(item => item.id === +req.params.id)
     if(updateIndex>=0) {
