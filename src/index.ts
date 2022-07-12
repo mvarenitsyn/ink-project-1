@@ -90,7 +90,7 @@ app.delete('/videos/:id', (req:Request, res:Response) => {
 
 
 app.listen(port, () => {
-    console.log(`Server up and running op port ${port}`)
+    console.log(`Server up and running op port: ${port}`)
 })
 
 const handleError = (message:String, field:String) => {
