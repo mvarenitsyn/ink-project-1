@@ -54,18 +54,19 @@ app.post('/videos', (req:Request, res:Response) => {
 //Put request
 app.put('/videos/:id', (req:Request, res:Response) =>  {
     const updateIndex = videos.findIndex(item => item.id === +req.params.id)
+    const title = req.body.title
     if(updateIndex>=0) {
 
-        if(req.body.title.length <= 40 && req.body.title.length > 0) {
+        if(title && title.length<=40) {
             videos[updateIndex].title = req.body.title
             res.status(204)
         } else {
-            console.log(req.body.title.length)
             res.status(400).send(handleError('Field is incorrect (max length is 40)', 'title'))
         }
     } else {
         res.status(404)
     }
+
     res.end()
 
 })
