@@ -54,11 +54,13 @@ app.post('/videos', (req:Request, res:Response) => {
 app.put('/videos/:id', (req:Request, res:Response) =>  {
     const updateIndex = videos.findIndex(item => item.id === +req.params.id)
     if(updateIndex>=0) {
-        if(req.body.title.length <= 40) {
+
+        if(req.body.title.length <= 40 && req.body.title.length > 0) {
             videos[updateIndex].title = req.body.title
             res.status(204)
         } else {
-            res.status(400).send(handleError('Input has exceeded maximum length of 40 symbols', 'title'))
+            console.log(req.body.title.length)
+            res.status(400).send(handleError('Field is incorrect', 'title'))
         }
     } else {
         res.status(404)
