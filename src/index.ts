@@ -60,7 +60,7 @@ app.put('/videos/:id', (req:Request, res:Response) =>  {
             res.status(204)
         } else {
             console.log(req.body.title.length)
-            res.status(400).send(handleError('Field is incorrect', 'title'))
+            res.status(400).send(handleError('Field is incorrect (max length is 40)', 'title'))
         }
     } else {
         res.status(404)
