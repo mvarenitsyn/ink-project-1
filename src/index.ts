@@ -85,7 +85,7 @@ app.delete('/videos/:id', (req:Request, res:Response) => {
 
 
 
-app.listen(3003, () => {
+app.listen(port, () => {
     console.log(`Server up and running op port ${port}`)
 })
 
