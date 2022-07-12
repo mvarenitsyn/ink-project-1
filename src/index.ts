@@ -43,7 +43,7 @@ app.post('/videos', (req:Request, res:Response) => {
         author: 'Mikhail'
     }
 
-    if(newVideo.title) {
+    if(newVideo.title && newVideo.title.length <=40) {
         videos.push(newVideo)
         res.status(201).send(newVideo)
     } else {
